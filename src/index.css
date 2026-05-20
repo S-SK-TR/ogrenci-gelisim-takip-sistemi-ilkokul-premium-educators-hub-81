@@ -1,70 +1,78 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 9%;
-    --foreground: 210 40% 98%;
-    --card: 0 0% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 98%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 98%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 215 27% 17%;
-    --input: 215 27% 17%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 9%;
-    --foreground: 210 40% 98%;
-    --card: 0 0% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 98%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 98%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 215 27% 17%;
-    --input: 215 27% 17%;
-    --ring: 221 83% 53%;
-  }
+/* ── Dark Mode Tokens ── */
+.dark {
+  --background: 222 47% 5%;
+  --foreground: 210 20% 98%;
+  --bg-base: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-glow: rgba(59, 130, 246, 0.1);
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --brand-500: 217 91% 60%;
 }
 
-@layer components {
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg;
-  }
-
-  .bento-grid {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[minmax(200px,1fr)];
-  }
+/* ── Light Mode Tokens ── */
+.light {
+  --background: 0 0% 98%;
+  --foreground: 222 47% 11%;
+  --bg-base: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-glow: rgba(59, 130, 246, 0.08);
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --brand-500: 217 91% 60%;
 }
 
-@layer utilities {
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Tema geçişleri için sadece body'de transition */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  .animate-spin-slow {
-    animation: spin 3s linear infinite;
-  }
+/* Premium Glassmorphism */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Yardımcı geçiş sınıfı — Framer Motion kullanılmayan öğeler için */
+.smooth-transition {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+              color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
